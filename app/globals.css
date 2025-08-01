@@ -1,0 +1,213 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 255, 255, 255; /* White */
+  --background-end-rgb: 255, 255, 255; /* White */
+
+  /* Monochrome Palette */
+  --color-black: 0 0% 0%;
+  --color-white: 0 0% 100%;
+  --color-gray-100: 0 0% 95%;
+  --color-gray-200: 0 0% 90%;
+  --color-gray-300: 0 0% 80%;
+  --color-gray-400: 0 0% 70%;
+  --color-gray-500: 0 0% 50%;
+  --color-gray-600: 0 0% 40%;
+  --color-gray-700: 0 0% 30%;
+  --color-gray-800: 0 0% 20%;
+  --color-gray-900: 0 0% 10%;
+
+  /* Accent Color (Apple Blue-ish) */
+  --color-accent: 214 91% 50%; /* A vibrant blue */
+
+  --background: var(--color-white);
+  --foreground: var(--color-black);
+
+  --card: var(--color-white);
+  --card-foreground: var(--color-black);
+
+  --popover: var(--color-white);
+  --popover-foreground: var(--color-black);
+
+  --primary: var(--color-black);
+  --primary-foreground: var(--color-white);
+
+  --secondary: var(--color-gray-100);
+  --secondary-foreground: var(--color-black);
+
+  --muted: var(--color-gray-200);
+  --muted-foreground: var(--color-gray-600);
+
+  --accent: var(--color-accent);
+  --accent-foreground: var(--color-white);
+
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 0 0% 98%;
+
+  --border: var(--color-gray-300);
+  --input: var(--color-gray-300);
+  --ring: var(--color-black);
+
+  --radius: 0.75rem; /* Slightly more rounded for Apple feel */
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+
+    --background: var(--color-black);
+    --foreground: var(--color-white);
+
+    --card: var(--color-gray-900);
+    --card-foreground: var(--color-white);
+
+    --popover: var(--color-gray-900);
+    --popover-foreground: var(--color-white);
+
+    --primary: var(--color-white);
+    --primary-foreground: var(--color-black);
+
+    --secondary: var(--color-gray-800);
+    --secondary-foreground: var(--color-white);
+
+    --muted: var(--color-gray-700);
+    --muted-foreground: var(--color-gray-400);
+
+    --accent: var(--color-accent);
+    --accent-foreground: var(--color-white);
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: var(--color-gray-700);
+    --input: var(--color-gray-700);
+    --ring: var(--color-white);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-bold tracking-tight;
+  }
+  p {
+    @apply leading-relaxed;
+  }
+}
+
+/* Custom scrollbar for a cleaner look */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-gray-100);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-gray-400);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-gray-500);
+}
+
+/* Dark mode scrollbar */
+.dark ::-webkit-scrollbar-track {
+  background: var(--color-gray-900);
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: var(--color-gray-600);
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: var(--color-gray-500);
+}
+
+/* Glass effect enhancements */
+.glass-nav {
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  position: relative;
+  z-index: 100;
+}
+
+.dark .glass-nav {
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+/* Fixed navbar ensures it stays on top */
+.fixed-navbar {
+  position: fixed !important;
+  top: 1rem !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  z-index: 9999 !important;
+  width: 95% !important;
+  max-width: 56rem !important;
+}
+
+/* Centered content container */
+.centered-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+@media (min-width: 768px) {
+  .centered-container {
+    padding: 0 2rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .centered-container {
+    padding: 0 3rem;
+  }
+}
+
+/* Marquee Animations */
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(calc(-100% - var(--gap)));
+  }
+}
+
+@keyframes marquee-vertical {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(calc(-100% - var(--gap)));
+  }
+}
+
+.animate-marquee {
+  animation: marquee var(--duration) infinite linear;
+}
+
+.animate-marquee-vertical {
+  animation: marquee-vertical var(--duration) linear infinite;
+}
