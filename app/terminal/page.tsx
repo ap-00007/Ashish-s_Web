@@ -2,7 +2,6 @@
 
 import React, { useState, useEffect, useRef, KeyboardEvent } from 'react';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
 import LetterGlitch from '@/components/LetterGlitch';
 import { SmoothCursor } from '@/components/ui/smooth-cursor';
 
@@ -12,7 +11,6 @@ type CommandOutput = {
 };
 
 const TerminalPage = () => {
-  const router = useRouter();
   const [isMounted, setIsMounted] = useState(false);
   const [command, setCommand] = useState<string>('');
   const [commandHistory, setCommandHistory] = useState<string[]>([]);
@@ -82,20 +80,7 @@ Python is where I experiment with logic fast. C++ is where I go when I want cont
 
   useEffect(() => {
     setIsMounted(true);
-    // Prefetch the home page for faster navigation
-    if (typeof window !== 'undefined') {
-      router.prefetch('/');
-      // Hide the body overflow to prevent scrolling conflicts
-      document.body.style.overflow = 'hidden';
-    }
-    
-    return () => {
-      // Restore body overflow when leaving terminal
-      if (typeof window !== 'undefined') {
-        document.body.style.overflow = '';
-      }
-    };
-  }, [router]);
+  }, []);
 
   useEffect(() => {
     // Focus input when terminal loads
@@ -110,13 +95,6 @@ Python is where I experiment with logic fast. C++ is where I go when I want cont
       terminalBodyRef.current.scrollTop = terminalBodyRef.current.scrollHeight;
     }
   }, [output]);
-
-  const handleNavigation = () => {
-    if (typeof window !== 'undefined') {
-      // Direct navigation to ensure we bypass any routing issues
-      window.location.replace('/');
-    }
-  };
 
   const handleCommand = () => {
     if (!command.trim()) return;
@@ -225,7 +203,7 @@ Python is where I experiment with logic fast. C++ is where I go when I want cont
       setCommand('');
       setTimeout(() => {
         if (typeof window !== 'undefined') {
-          window.location.replace('/');
+          window.location.href = '/';
         }
       }, 1000);
       return;
@@ -264,41 +242,30 @@ Python is where I experiment with logic fast. C++ is where I go when I want cont
   };
 
   return (
-    <>
-      {/* Override the main layout styling */}
-      <style jsx global>{`
-        body {
-          overflow: hidden !important;
-        }
-        .min-h-screen {
-          display: none !important;
-        }
-      `}</style>
-      
-      <div className="fixed inset-0 w-full h-full overflow-hidden z-50 bg-black">
-        <SmoothCursor />
-        {/* Full viewport LetterGlitch background */}
-        <div className="absolute inset-0 z-0">
-          {isMounted && (
-            <LetterGlitch
-              glitchSpeed={glitchSpeed}
-              centerVignette={true}
-              outerVignette={false}
-              smooth={true}
-            />
-          )}
-        </div>
+    <div className="fixed inset-0 w-full h-full overflow-hidden z-10">
+      <SmoothCursor />
+      {/* Full viewport LetterGlitch background */}
+      <div className="absolute inset-0 z-0">
+        {isMounted && (
+          <LetterGlitch
+            glitchSpeed={glitchSpeed}
+            centerVignette={true}
+            outerVignette={false}
+            smooth={true}
+          />
+        )}
+      </div>
       
       {/* Terminal content overlay */}
       <div className="relative z-10 h-full flex items-center justify-center p-4">
         <div className="terminal-container bg-black/80 backdrop-blur-sm border border-gray-600 rounded-lg shadow-2xl max-w-4xl w-full h-[80vh] flex flex-col">
           <div className="terminal-header bg-gray-800 flex items-center px-4 py-2 rounded-t-lg">
-            <button
-              onClick={handleNavigation}
-              className="terminal-button close bg-red-500 w-3 h-3 rounded-full mr-2 hover:bg-red-600 transition-colors cursor-pointer border-none outline-none"
+            <Link 
+              href="/" 
+              className="terminal-button close bg-red-500 w-3 h-3 rounded-full mr-2 block hover:bg-red-600 transition-colors cursor-pointer"
+              prefetch={true}
               title="Return to home page"
-              aria-label="Close terminal and return to home page"
-            ></button>
+            ></Link>
             <div className="terminal-button minimize bg-yellow-500 w-3 h-3 rounded-full mr-2"></div>
             <div className="terminal-button maximize bg-green-500 w-3 h-3 rounded-full"></div>
             <div className="flex-1 text-center text-gray-300 text-sm">Ashish's Portfolio Terminal</div>
@@ -342,7 +309,6 @@ Python is where I experiment with logic fast. C++ is where I go when I want cont
         </div>
       </div>
     </div>
-    </>
   );
 };
 
