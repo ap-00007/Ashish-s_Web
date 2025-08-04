@@ -16,8 +16,8 @@ const TerminalPage = () => {
   const [commandHistory, setCommandHistory] = useState<string[]>([]);
   const [historyIndex, setHistoryIndex] = useState<number>(-1);
   const [output, setOutput] = useState<CommandOutput[]>([
-    { text: 'Welcome to Ashish\'s Portfolio Terminal!', isCommand: false },
-    { text: 'Type \'help\' to see available commands.', isCommand: false },
+    { text: 'Welcome to Ashish&apos;s Portfolio Terminal!', isCommand: false },
+    { text: 'Type &apos;help&apos; to see available commands.', isCommand: false },
   ]);
   const [glitchSpeed, setGlitchSpeed] = useState<number>(50);
   const terminalBodyRef = useRef<HTMLDivElement>(null);
@@ -25,11 +25,11 @@ const TerminalPage = () => {
 
   // Website content data
   const websiteData = {
-    about: `Hello! I'm Ashish Panda, a second-year engineering student at VIT Pune with a strong interest in core programming and problem solving. Most of my work so far has been in C++ and Python—using them to explore everything from pattern printing and recursion to data structures, dynamic programming, and matrix manipulation.
+    about: `Hello! I&apos;m Ashish Panda, a second-year engineering student at VIT Pune with a strong interest in core programming and problem solving. Most of my work so far has been in C++ and Python—using them to explore everything from pattern printing and recursion to data structures, dynamic programming, and matrix manipulation.
 
-I've written code that handles real input, stores data in efficient formats like sparse matrix triplets using structs, and solves optimization problems with clean logic. I've worked on CLI-level applications and debugged everything from simple formatting bugs to scope errors in standard libraries.
+I&apos;ve written code that handles real input, stores data in efficient formats like sparse matrix triplets using structs, and solves optimization problems with clean logic. I&apos;ve worked on CLI-level applications and debugged everything from simple formatting bugs to scope errors in standard libraries.
 
-Python is where I experiment with logic fast. C++ is where I go when I want control and precision. I'm also getting into areas like AI, API integration, and front-end dev (React, mostly), and I like writing clean, readable code that does something useful—not just academically, but practically. Every time I code, I try to improve the way I think—not just the output on screen.`,
+Python is where I experiment with logic fast. C++ is where I go when I want control and precision. I&apos;m also getting into areas like AI, API integration, and front-end dev (React, mostly), and I like writing clean, readable code that does something useful—not just academically, but practically. Every time I code, I try to improve the way I think—not just the output on screen.`,
 
     skills: [
       'Languages: C++, Python, JavaScript, TypeScript',
@@ -54,16 +54,16 @@ Python is where I experiment with logic fast. C++ is where I go when I want cont
     // Fun interactive elements
     
     jokes: [
-      "Why don't programmers like nature? It has too many bugs.",
-      "How many programmers does it take to change a light bulb? None, that's a hardware problem!",
-      "Why do Java developers wear glasses? Because they don't C#!",
-      "What's a programmer's favorite place? Foo Bar.",
-      "Why was the JavaScript developer sad? Because he didn't Node how to Express himself."
+      "Why don&apos;t programmers like nature? It has too many bugs.",
+      "How many programmers does it take to change a light bulb? None, that&apos;s a hardware problem!",
+      "Why do Java developers wear glasses? Because they don&apos;t C#!",
+      "What&apos;s a programmer&apos;s favorite place? Foo Bar.",
+      "Why was the JavaScript developer sad? Because he didn&apos;t Node how to Express himself."
     ],
     
     funFacts: [
       "The first computer bug was an actual bug - a moth found in the Harvard Mark II computer in 1947.",
-      "The Firefox logo isn't a fox, it's a red panda.",
+      "The Firefox logo isn&apos;t a fox, it&apos;s a red panda.",
       "The first website is still online: http://info.cern.ch",
       "The first computer programmer was a woman - Ada Lovelace.",
       "The programming language Python is named after Monty Python, not the snake."
@@ -74,7 +74,7 @@ Python is where I experiment with logic fast. C++ is where I go when I want cont
       "First, solve the problem. Then, write the code. — John Johnson",
       "Any fool can write code that a computer can understand. Good programmers write code that humans can understand. — Martin Fowler",
       "Talk is cheap. Show me the code. — Linus Torvalds",
-      "Programming isn't about what you know; it's about what you can figure out. — Chris Pine"
+      "Programming isn&apos;t about what you know; it&apos;s about what you can figure out. — Chris Pine"
     ]
   };
 
@@ -268,7 +268,7 @@ Python is where I experiment with logic fast. C++ is where I go when I want cont
             ></Link>
             <div className="terminal-button minimize bg-yellow-500 w-3 h-3 rounded-full mr-2"></div>
             <div className="terminal-button maximize bg-green-500 w-3 h-3 rounded-full"></div>
-            <div className="flex-1 text-center text-gray-300 text-sm">Ashish's Portfolio Terminal</div>
+            <div className="flex-1 text-center text-gray-300 text-sm">Ashish&apos;s Portfolio Terminal</div>
           </div>
           <div ref={terminalBodyRef} className="terminal-body p-6 text-green-400 font-mono flex-1 overflow-y-auto">
             {output.map((line, i) => (
