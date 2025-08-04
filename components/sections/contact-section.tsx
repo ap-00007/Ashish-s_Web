@@ -91,7 +91,7 @@ export function ContactSection() {
           transition={{ duration: 0.8, delay: 0.4 }}
         >
           <MagicCard
-            gradientColor={theme === "dark" ? "#262626" : "#D9D9D955"}
+            gradientColor={theme === "dark" ? "#404040" : "#E8E8E888"}
             className="p-0 shadow-none border-none"
           >
             <form
