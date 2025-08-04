@@ -1,8 +1,9 @@
 'use client';
 
 import React, { useState, useEffect, useRef, KeyboardEvent } from 'react';
-import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 import LetterGlitch from '@/components/LetterGlitch';
+import { SmoothCursor } from '@/components/ui/smooth-cursor';
 
 type CommandOutput = {
   text: string;
@@ -10,7 +11,7 @@ type CommandOutput = {
 };
 
 const TerminalPage = () => {
-  const router = useRouter();
+  const [isMounted, setIsMounted] = useState(false);
   const [command, setCommand] = useState<string>('');
   const [commandHistory, setCommandHistory] = useState<string[]>([]);
   const [historyIndex, setHistoryIndex] = useState<number>(-1);
@@ -78,11 +79,15 @@ Python is where I experiment with logic fast. C++ is where I go when I want cont
   };
 
   useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  useEffect(() => {
     // Focus input when terminal loads
-    if (inputRef.current) {
+    if (isMounted && inputRef.current) {
       inputRef.current.focus();
     }
-  }, []);
+  }, [isMounted]);
 
   // Scroll to bottom when output changes
   useEffect(() => {
@@ -193,8 +198,15 @@ Python is where I experiment with logic fast. C++ is where I go when I want cont
       return;
     } 
     else if (mainCommand === 'home' || mainCommand === 'exit') {
-      newOutput.push({ text: 'Navigating back to the main website...', isCommand: false });
-      setTimeout(() => router.push('/'), 1000);
+      newOutput.push({ text: 'Returning to main website...', isCommand: false });
+      setOutput(newOutput);
+      setCommand('');
+      setTimeout(() => {
+        if (typeof window !== 'undefined') {
+          window.location.href = '/';
+        }
+      }, 1000);
+      return;
     } 
     else {
       newOutput.push({ text: `Command not found: ${command}. Type 'help' for available commands.`, isCommand: false });
@@ -231,22 +243,29 @@ Python is where I experiment with logic fast. C++ is where I go when I want cont
 
   return (
     <div className="fixed inset-0 w-full h-full overflow-hidden z-10">
+      <SmoothCursor />
       {/* Full viewport LetterGlitch background */}
       <div className="absolute inset-0 z-0">
-        <LetterGlitch
-          glitchSpeed={glitchSpeed}
-          centerVignette={true}
-          outerVignette={false}
-          smooth={true}
-        />
+        {isMounted && (
+          <LetterGlitch
+            glitchSpeed={glitchSpeed}
+            centerVignette={true}
+            outerVignette={false}
+            smooth={true}
+          />
+        )}
       </div>
       
       {/* Terminal content overlay */}
       <div className="relative z-10 h-full flex items-center justify-center p-4">
         <div className="terminal-container bg-black/80 backdrop-blur-sm border border-gray-600 rounded-lg shadow-2xl max-w-4xl w-full h-[80vh] flex flex-col">
           <div className="terminal-header bg-gray-800 flex items-center px-4 py-2 rounded-t-lg">
-            <div className="terminal-button close bg-red-500 w-3 h-3 rounded-full mr-2" 
-                 onClick={() => router.push('/')}></div>
+            <Link 
+              href="/" 
+              className="terminal-button close bg-red-500 w-3 h-3 rounded-full mr-2 block hover:bg-red-600 transition-colors cursor-pointer"
+              prefetch={true}
+              title="Return to home page"
+            ></Link>
             <div className="terminal-button minimize bg-yellow-500 w-3 h-3 rounded-full mr-2"></div>
             <div className="terminal-button maximize bg-green-500 w-3 h-3 rounded-full"></div>
             <div className="flex-1 text-center text-gray-300 text-sm">Ashish's Portfolio Terminal</div>

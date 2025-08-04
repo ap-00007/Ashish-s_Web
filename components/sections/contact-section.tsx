@@ -1,5 +1,6 @@
 'use client';
 
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { Mail, Phone, MapPin, Github, Linkedin, Twitter } from 'lucide-react';
@@ -14,10 +15,15 @@ import { MagicCard } from '@/components/magicui/magic-card';
 
 export function ContactSection() {
   const { theme } = useTheme();
+  const [isMounted, setIsMounted] = useState(false);
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.1,
   });
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   const fadeInVariants = {
     hidden: { opacity: 0, y: 50 },
@@ -30,7 +36,7 @@ export function ContactSection() {
         <motion.h2
         className="text-4xl font-extrabold text-center mb-16"
         initial="hidden"
-        animate={inView ? "visible" : "hidden"}
+        animate={isMounted && inView ? "visible" : "hidden"}
         variants={fadeInVariants}
         transition={{ duration: 0.6 }}
       >
@@ -40,7 +46,7 @@ export function ContactSection() {
         <motion.div
           className="space-y-8"
           initial="hidden"
-          animate={inView ? "visible" : "hidden"}
+          animate={isMounted && inView ? "visible" : "hidden"}
           variants={fadeInVariants}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
@@ -80,7 +86,7 @@ export function ContactSection() {
         <motion.div
           className="max-w-md w-full mx-auto"
           initial="hidden"
-          animate={inView ? "visible" : "hidden"}
+          animate={isMounted && inView ? "visible" : "hidden"}
           variants={fadeInVariants}
           transition={{ duration: 0.8, delay: 0.4 }}
         >

@@ -1,5 +1,6 @@
 'use client';
 
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { cn } from "@/lib/utils";
@@ -77,10 +78,15 @@ const TechnologyCard = ({
 };
 
 export function TechnologiesSection() {
+  const [isMounted, setIsMounted] = useState(false);
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.1,
   });
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   const itemVariants = {
     hidden: { opacity: 0, y: 20 },
@@ -93,7 +99,7 @@ export function TechnologiesSection() {
         <motion.h2
           className="text-4xl font-extrabold text-center mb-16"
           initial="hidden"
-          animate={inView ? "visible" : "hidden"}
+          animate={isMounted && inView ? "visible" : "hidden"}
           variants={itemVariants}
           transition={{ duration: 0.6 }}
         >
@@ -104,7 +110,7 @@ export function TechnologiesSection() {
       <motion.div
         className="relative flex w-screen flex-col items-center justify-center overflow-hidden -mx-[50vw] left-1/2"
         initial="hidden"
-        animate={inView ? "visible" : "hidden"}
+        animate={isMounted && inView ? "visible" : "hidden"}
         variants={itemVariants}
         transition={{ duration: 0.8, delay: 0.2 }}
       >

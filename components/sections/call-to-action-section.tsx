@@ -1,5 +1,6 @@
 'use client';
 
+    import { useState, useEffect } from 'react';
     import Link from 'next/link';
     import { motion } from 'framer-motion';
     import { useInView } from 'react-intersection-observer';
@@ -8,10 +9,15 @@
     import { Button } from '@/components/ui/button';
 
     export function CallToActionSection() {
+      const [isMounted, setIsMounted] = useState(false);
       const [ref, inView] = useInView({
         triggerOnce: true,
         threshold: 0.1,
       });
+
+      useEffect(() => {
+        setIsMounted(true);
+      }, []);
 
       const fadeInVariants = {
         hidden: { opacity: 0, y: 50 },
@@ -24,7 +30,7 @@
             <motion.h2
               className="text-4xl font-extrabold mb-8"
               initial="hidden"
-              animate={inView ? 'visible' : 'hidden'}
+              animate={isMounted && inView ? 'visible' : 'hidden'}
               variants={fadeInVariants}
               transition={{ duration: 0.6 }}
             >
@@ -33,7 +39,7 @@
             <motion.p
               className="text-lg text-muted-foreground mb-12 max-w-2xl mx-auto"
               initial="hidden"
-              animate={inView ? 'visible' : 'hidden'}
+              animate={isMounted && inView ? 'visible' : 'hidden'}
               variants={fadeInVariants}
               transition={{ duration: 0.6, delay: 0.2 }}
             >
@@ -42,7 +48,7 @@
             <motion.div
               className="flex flex-col sm:flex-row justify-center gap-6"
               initial="hidden"
-              animate={inView ? 'visible' : 'hidden'}
+              animate={isMounted && inView ? 'visible' : 'hidden'}
               variants={fadeInVariants}
               transition={{ duration: 0.6, delay: 0.4 }}
             >

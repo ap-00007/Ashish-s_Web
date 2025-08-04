@@ -1,5 +1,4 @@
 import { Inter } from 'next/font/google';
-import { SmoothCursor } from '@/components/ui/smooth-cursor';
 import '../globals.css';
 
 const inter = Inter({ subsets: ['latin'] });
@@ -15,13 +14,8 @@ export default function TerminalLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="scroll-smooth">
-      <body className={`${inter.className} bg-black overflow-hidden`}>
-        <SmoothCursor />
-        <div className="min-h-screen flex flex-col relative z-10">
-          {children}
-        </div>
-      </body>
-    </html>
+    <div className={`${inter.className} min-h-screen bg-black overflow-hidden`}>
+      {children}
+    </div>
   );
 }

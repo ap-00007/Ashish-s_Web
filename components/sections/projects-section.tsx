@@ -1,5 +1,6 @@
 'use client';
 
+import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
@@ -13,32 +14,37 @@ const projects = [
   {
     title: 'Citizen Weave',
     description: 'Citizen Weave is a modern platform that helps Indians engage with the government, report issues, and take part in democratic processes.',
-    image: '',
+    image: '#',
     githubLink: 'https://github.com/ap-00007/CitizenWeave.git',
     liveLink: '#',
   },
   {
     title: 'Finopidea',
     description: 'An intuitive task management application with drag-and-drop functionality, due dates, and collaboration features.',
-    image: '/Finopidea.png',
+    image: '#',
     githubLink: 'https://github.com/ap-00007/Finopedia.git',
     liveLink: '#',
   },
   {
     title: 'Personal Portfolio Site',
     description: 'A personal portfolio showcasing my skills, projects, and experience in web development, Python, and tech, with a Terminal.',
-    image: 'https://images.unsplash.com/photo-1499750310107-5fcd61f20283?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-    githubLink: '#',
+    image: '#',
+    githubLink: 'https://github.com/ap-00007/Ashish-s_Web.git',
     liveLink: '#',
   },
   
 ];
 
 export function ProjectsSection() {
+  const [isMounted, setIsMounted] = useState(false);
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.1,
   });
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -61,7 +67,7 @@ export function ProjectsSection() {
         <motion.h2
         className="text-4xl font-extrabold text-center mb-16"
         initial="hidden"
-        animate={inView ? "visible" : "hidden"}
+        animate={isMounted && inView ? "visible" : "hidden"}
         variants={itemVariants}
         transition={{ duration: 0.6 }}
       >
@@ -70,7 +76,7 @@ export function ProjectsSection() {
       <motion.div
         className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"
         initial="hidden"
-        animate={inView ? "visible" : "hidden"}
+        animate={isMounted && inView ? "visible" : "hidden"}
         variants={containerVariants}
       >
         {projects.map((project, index) => (
@@ -80,14 +86,19 @@ export function ProjectsSection() {
             transition={{ duration: 0.5, delay: index * 0.08 }}
           >
             <Card className="flex h-full flex-col overflow-hidden transition-all duration-300 hover:shadow-lg hover:scale-[1.02]">
-              <div className="relative h-48 w-full overflow-hidden">
-                <Image
-                  src={project.image}
-                  alt={project.title}
-                  layout="fill"
-                  objectFit="cover"
-                  className="transition-transform duration-500 hover:scale-110"
-                />
+              <div className="relative h-48 w-full overflow-hidden bg-muted">
+                {project.image !== '#' ? (
+                  <Image
+                    src={project.image}
+                    alt={project.title}
+                    fill
+                    className="object-cover transition-transform duration-500 hover:scale-110"
+                  />
+                ) : (
+                  <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20">
+                    <span className="text-muted-foreground text-sm">Project Image</span>
+                  </div>
+                )}
               </div>
               <CardHeader>
                 <CardTitle className="text-2xl">{project.title}</CardTitle>
