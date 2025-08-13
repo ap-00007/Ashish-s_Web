@@ -100,7 +100,7 @@ export function ContactSection() {
             >
               <div className="border-b border-border pb-6">
                 <h3 className="text-2xl font-semibold mb-2">Send a Message</h3>
-                <p className="text-muted-foreground">I'll get back to you as soon as possible</p>
+                <p className="text-muted-foreground">I&apos;ll get back to you as soon as possible</p>
               </div>
               <div className="space-y-4">
                 <div>

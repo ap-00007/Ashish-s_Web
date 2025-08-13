@@ -23,7 +23,6 @@ export function LetterGlitch({
   const [isGlitching, setIsGlitching] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
-  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
     setIsMounted(true);
@@ -72,7 +71,6 @@ export function LetterGlitch({
 
     return () => {
       if (intervalRef.current) clearInterval(intervalRef.current);
-      if (timeoutRef.current) clearTimeout(timeoutRef.current);
     };
   }, [text, glitchChance, glitchDuration, characters, isMounted]);
 

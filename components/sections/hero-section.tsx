@@ -35,7 +35,7 @@ export function HeroSection() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: 'easeOut' }}
         >
-          Hello, I'm{' '}
+          Hello, I&apos;m{' '}
           <LetterGlitch text="Ashish" className="text-accent" />.
           <br />
           A Passionate <RoleGlitch className="text-accent" />
