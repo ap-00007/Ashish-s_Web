@@ -3,7 +3,6 @@
 import React, { useState, useEffect, useRef, KeyboardEvent } from 'react';
 import Link from 'next/link';
 import LetterGlitch from '@/components/LetterGlitch';
-import { SmoothCursor } from '@/components/ui/smooth-cursor';
 
 type CommandOutput = {
   text: string;
@@ -44,7 +43,7 @@ const TerminalPage = () => {
   const [commandHistory, setCommandHistory] = useState<string[]>([]);
   const [historyIndex, setHistoryIndex] = useState<number>(-1);
   const [output, setOutput] = useState<CommandOutput[]>([
-    { text: 'Welcome to Ashish&apos;s Portfolio Terminal!', isCommand: false, isTyping: true },
+    { text: "Welcome to Ashish's Portfolio Terminal!", isCommand: false, isTyping: true },
     { text: 'Type &apos;help&apos; to see available commands.', isCommand: false, isTyping: true },
   ]);
   const [glitchSpeed, setGlitchSpeed] = useState<number>(50);
@@ -66,11 +65,7 @@ const TerminalPage = () => {
 
   // Website content data
   const websiteData = {
-    about: `Hello! I&apos;m Ashish Panda, a second-year engineering student at VIT Pune with a strong interest in core programming and problem solving. Most of my work so far has been in C++ and Python—using them to explore everything from pattern printing and recursion to data structures, dynamic programming, and matrix manipulation.
-
-I&apos;ve written code that handles real input, stores data in efficient formats like sparse matrix triplets using structs, and solves optimization problems with clean logic. I&apos;ve worked on CLI-level applications and debugged everything from simple formatting bugs to scope errors in standard libraries.
-
-Python is where I experiment with logic fast. C++ is where I go when I want control and precision. I&apos;m also getting into areas like AI, API integration, and front-end dev (React, mostly), and I like writing clean, readable code that does something useful—not just academically, but practically. Every time I code, I try to improve the way I think—not just the output on screen.`,
+    about: "H‎ello, I'm Ashish Panda, a second-year engineering student at VIT Pune with a strong interest in core programming and problem solving. Most of my work so far has been in C++ and Python—using them to explore everything from pattern printing and recursion to data structures, dynamic programming, and matrix manipulation. I've written code that handles real input, stores data in efficient formats like sparse matrix triplets using structs, and solves optimization problems with clean logic. I've worked on CLI-level applications and debugged everything from simple formatting bugs to scope errors in standard libraries. Python is where I experiment with logic fast. C++ is where I go when I want control and precision. I'm also getting into areas like AI, API integration, and front-end dev (React, mostly), and I like writing clean, readable code that does something useful—not just academically, but practically. Every time I code, I try to improve the way I think—not just the output on screen.",
 
     skills: [
       'Languages: C++, Python, JavaScript, TypeScript',
@@ -655,8 +650,7 @@ Python is where I experiment with logic fast. C++ is where I go when I want cont
   const themeClasses = getThemeClasses();
 
   return (
-    <div className="fixed inset-0 w-full h-full overflow-hidden z-10">
-      <SmoothCursor />
+    <div className="min-h-screen w-full relative overflow-hidden">
       {/* Full viewport LetterGlitch background */}
       <div className="absolute inset-0 z-0">
         {isMounted && (
@@ -678,7 +672,7 @@ Python is where I experiment with logic fast. C++ is where I go when I want cont
       )}
       
       {/* Terminal content overlay */}
-      <div className="relative z-10 h-full flex items-center justify-center p-4">
+      <div className="relative z-10 min-h-screen flex items-center justify-center p-4">
         <div className={`terminal-container ${themeClasses.container} backdrop-blur-sm ${themeClasses.terminal} rounded-lg shadow-2xl max-w-4xl w-full h-[80vh] flex flex-col`}>
           <div className="terminal-header bg-gray-800 flex items-center px-4 py-2 rounded-t-lg">
             <Link 

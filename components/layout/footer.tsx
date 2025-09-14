@@ -7,7 +7,7 @@ export function Footer() {
       <div className="centered-container flex flex-col items-center justify-between gap-6 md:flex-row">
         <div className="flex flex-col items-center gap-4 md:flex-row md:gap-2">
           <p className="text-sm text-muted-foreground">
-            © {new Date().getFullYear()} My Portfolio. All rights reserved.
+            © <span suppressHydrationWarning>{new Date().getFullYear()}</span> My Portfolio. All rights reserved.
           </p>
         </div>
         <div className="flex space-x-4">

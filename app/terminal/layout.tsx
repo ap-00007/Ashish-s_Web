@@ -1,9 +1,5 @@
 import React from 'react';
-import '../globals.css';
-import { Inter } from 'next/font/google';
-import { SmoothCursor } from '@/components/ui/smooth-cursor';
-
-const inter = Inter({ subsets: ['latin'] });
+import ClientOnlySmoothCursor from '@/components/ui/client-only-smooth-cursor';
 
 export default function TerminalLayout({
   children,
@@ -11,11 +7,9 @@ export default function TerminalLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="scroll-smooth" suppressHydrationWarning>
-      <body className={`${inter.className} bg-black`} suppressHydrationWarning>
-        <SmoothCursor />
-        {children}
-      </body>
-    </html>
+    <div className="min-h-screen bg-black">
+      <ClientOnlySmoothCursor />
+      {children}
+    </div>
   );
 }

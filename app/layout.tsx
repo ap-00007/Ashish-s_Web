@@ -5,12 +5,12 @@ import { MainNav } from '@/components/layout/main-nav';
 import { Footer } from '@/components/layout/footer';
 import { GridBackground } from '@/components/ui/grid-background';
 import { ScrollToTop } from '@/components/ui/scroll-to-top';
-import { SmoothCursor } from '@/components/ui/smooth-cursor';
+import ClientOnlySmoothCursor from '@/components/ui/client-only-smooth-cursor';
 
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'Ashish Panda - Personal Portfolio',
+  title: 'Ashish Panda',
   description: 'A modern, clean, and elegant personal portfolio website for Ashish Panda, a passionate software developer.',
 };
 
@@ -22,12 +22,12 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth" suppressHydrationWarning>
       <body className={inter.className} suppressHydrationWarning>
-        <SmoothCursor />
+        <ClientOnlySmoothCursor />
         <GridBackground>
           <div className="min-h-screen flex flex-col relative z-10">
-            <MainNav />
+            {/* <MainNav /> */}
             <main className="flex-1">{children}</main>
-            <Footer />
+            {/* <Footer /> */}
           </div>
           <ScrollToTop />
         </GridBackground>

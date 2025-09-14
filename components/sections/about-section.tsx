@@ -59,7 +59,7 @@ export function AboutSection() {
                 variants={fadeInVariants}
                 transition={{ duration: 0.8, delay: 0.4 }}
               >
-                Hi, I&apos;m Ashish Panda, a passionate software developer and data science enthusiast with a love for creating innovative digital solutions. I specialize in full-stack web development and have a keen interest in machine learning and data analytics.
+                Hi, I'm Ashish Panda, a passionate software developer and data science enthusiast with a love for creating innovative digital solutions. I specialize in full-stack web development and have a keen interest in machine learning and data analytics.
               </motion.p>
               <motion.p
                 className="text-lg text-muted-foreground leading-relaxed mb-8"
@@ -68,7 +68,7 @@ export function AboutSection() {
                 variants={fadeInVariants}
                 transition={{ duration: 0.8, delay: 0.6 }}
               >
-                When I&apos;m not coding, you can find me exploring new technologies, contributing to open-source projects, or diving deep into data to uncover meaningful insights. I believe in continuous learning and staying up-to-date with the latest industry trends.
+                When I'm not coding, you can find me exploring new technologies, contributing to open-source projects, or diving deep into data to uncover meaningful insights. I believe in continuous learning and staying up-to-date with the latest industry trends.
               </motion.p>
               <motion.p
                 className="text-lg text-muted-foreground leading-relaxed"
@@ -77,7 +77,7 @@ export function AboutSection() {
                 variants={fadeInVariants}
                 transition={{ duration: 0.8, delay: 0.8 }}
               >
-                My goal is to create meaningful and impactful software that makes a difference in people&apos;s lives while continuously growing as a developer and data scientist.
+                My goal is to create meaningful and impactful software that makes a difference in people's lives while continuously growing as a developer and data scientist.
               </motion.p>
             </div>
           </div>
