@@ -43,8 +43,8 @@ const TerminalPage = () => {
   const [commandHistory, setCommandHistory] = useState<string[]>([]);
   const [historyIndex, setHistoryIndex] = useState<number>(-1);
   const [output, setOutput] = useState<CommandOutput[]>([
-    { text: "Welcome to Ashish's Portfolio Terminal!", isCommand: false, isTyping: true },
-    { text: 'Type &apos;help&apos; to see available commands.', isCommand: false, isTyping: true },
+    { text: "W‎`elcome to Ashish's Portfolio Terminal!", isCommand: false, isTyping: true },
+    { text: 'Type help to see available commands.', isCommand: false, isTyping: true },
   ]);
   const [glitchSpeed, setGlitchSpeed] = useState<number>(50);
   const [currentTheme, setCurrentTheme] = useState<'default' | 'retro' | 'hacker'>('default');
