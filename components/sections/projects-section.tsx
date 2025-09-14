@@ -19,7 +19,7 @@ const projects = [
     liveLink: '#',
   },
   {
-    title: 'Finopidea',
+    title: 'Finopedia',
     description: 'An intuitive task management application with drag-and-drop functionality, due dates, and collaboration features.',
     image: '#',
     githubLink: 'https://github.com/ap-00007/Finopedia.git',

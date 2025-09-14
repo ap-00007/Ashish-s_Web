@@ -2,7 +2,8 @@
 
 import React, { useState, useEffect, useRef, KeyboardEvent } from 'react';
 import Link from 'next/link';
-import LetterGlitch from '@/components/LetterGlitch';
+import MatrixBackground from '@/components/ui/matrix-background';
+import { TypewriterText } from '@/components/ui/typewriter-text';
 
 type CommandOutput = {
   text: string;
@@ -10,31 +11,6 @@ type CommandOutput = {
   isError?: boolean;
   isPath?: boolean;
   isTyping?: boolean;
-};
-
-// Typewriter animation component
-const TypewriterText = ({ text, onComplete }: { text: string; onComplete?: () => void }) => {
-  const [displayedText, setDisplayedText] = useState('');
-  const [isComplete, setIsComplete] = useState(false);
-
-  useEffect(() => {
-    if (isComplete) return;
-    
-    let i = 0;
-    const interval = setInterval(() => {
-      setDisplayedText(prev => prev + text.charAt(i));
-      i++;
-      if (i >= text.length) {
-        clearInterval(interval);
-        setIsComplete(true);
-        onComplete?.();
-      }
-    }, 15); // Typing speed
-
-    return () => clearInterval(interval);
-  }, [text, onComplete, isComplete]);
-
-  return <span>{displayedText}</span>;
 };
 
 const TerminalPage = () => {
@@ -654,7 +630,7 @@ const TerminalPage = () => {
       {/* Full viewport LetterGlitch background */}
       <div className="absolute inset-0 z-0">
         {isMounted && (
-          <LetterGlitch
+          <MatrixBackground
             glitchSpeed={glitchSpeed}
             centerVignette={true}
             outerVignette={false}
@@ -706,7 +682,7 @@ const TerminalPage = () => {
                 {line.isCommand ? (
                   `user@portfolio:~$ ${line.text}`
                 ) : line.isTyping ? (
-                  <TypewriterText text={line.text} />
+                  <TypewriterText text={line.text} speed={15} />
                 ) : (
                   line.text
                 )}

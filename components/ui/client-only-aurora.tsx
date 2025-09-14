@@ -1,15 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import dynamic from 'next/dynamic';
-
-// Dynamically import Aurora with no SSR
-const Aurora = dynamic(() => import('./Aurora'), {
-  ssr: false,
-  loading: () => (
-    <div className="absolute inset-0 bg-gradient-to-br from-blue-900/20 via-purple-900/20 to-pink-900/20" />
-  ),
-});
+import Aurora from './Aurora';
 
 interface ClientOnlyAuroraProps {
   colorStops: string[];

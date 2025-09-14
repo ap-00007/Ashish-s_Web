@@ -1,17 +1,22 @@
+'use client';
+
 import { useRef, useEffect, useState } from "react";
-const LetterGlitch = ({
-  glitchColors = ["#2b4539", "#61dca3", "#61b3dc"],
-  glitchSpeed = 50,
-  centerVignette = false,
-  outerVignette = false,
-  smooth = true,
-}: {
+
+interface MatrixBackgroundProps {
   glitchColors?: string[];
   glitchSpeed?: number;
   centerVignette?: boolean;
   outerVignette?: boolean;
   smooth?: boolean;
-}) => {
+}
+
+const MatrixBackground = ({
+  glitchColors = ["#2b4539", "#61dca3", "#61b3dc"],
+  glitchSpeed = 50,
+  centerVignette = false,
+  outerVignette = false,
+  smooth = true,
+}: MatrixBackgroundProps) => {
   const [isMounted, setIsMounted] = useState(false);
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const animationRef = useRef<number | null>(null);
@@ -32,64 +37,9 @@ const LetterGlitch = ({
   const charHeight = 20;
 
   const lettersAndSymbols = [
-    "A",
-    "B",
-    "C",
-    "D",
-    "E",
-    "F",
-    "G",
-    "H",
-    "I",
-    "J",
-    "K",
-    "L",
-    "M",
-    "N",
-    "O",
-    "P",
-    "Q",
-    "R",
-    "S",
-    "T",
-    "U",
-    "V",
-    "W",
-    "X",
-    "Y",
-    "Z",
-    "!",
-    "@",
-    "#",
-    "$",
-    "&",
-    "*",
-    "(",
-    ")",
-    "-",
-    "_",
-    "+",
-    "=",
-    "/",
-    "[",
-    "]",
-    "{",
-    "}",
-    ";",
-    ":",
-    "<",
-    ">",
-    ",",
-    "0",
-    "1",
-    "2",
-    "3",
-    "4",
-    "5",
-    "6",
-    "7",
-    "8",
-    "9",
+    "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z",
+    "!", "@", "#", "$", "&", "*", "(", ")", "-", "_", "+", "=", "/", "[", "]", "{", "}", ";", ":", "<", ">", ",",
+    "0", "1", "2", "3", "4", "5", "6", "7", "8", "9",
   ];
 
   const getRandomChar = () => {
@@ -280,7 +230,6 @@ const LetterGlitch = ({
       cancelAnimationFrame(animationRef.current!);
       window.removeEventListener("resize", handleResize);
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [glitchSpeed, smooth, isMounted]);
 
   const containerStyle = {
@@ -332,5 +281,4 @@ const LetterGlitch = ({
   );
 };
 
-export default LetterGlitch;
-
+export default MatrixBackground;

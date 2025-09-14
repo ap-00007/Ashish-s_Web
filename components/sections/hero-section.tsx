@@ -5,8 +5,8 @@ import { ArrowRight } from 'lucide-react';
 import Link from 'next/link';
 
 import { Button } from '@/components/ui/button';
-import { LetterGlitch } from '@/components/ui/LetterGlitch';
-import { LetterGlitchBackground } from '@/components/ui/LetterGlitchBackground';
+import { LetterGlitch } from '@/components/ui/letter-glitch';
+import { LetterGlitchBackground } from '@/components/ui/letter-glitch-background';
 import { RoleGlitch } from '@/components/ui/role-glitch';
 import { ClientOnlyAurora } from '@/components/ui/client-only-aurora';
 
